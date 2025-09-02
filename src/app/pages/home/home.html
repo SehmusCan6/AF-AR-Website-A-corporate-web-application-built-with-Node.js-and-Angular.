@@ -1,0 +1,71 @@
+<!-- HERO SECTION -->
+<section class="hero" #heroSection>
+  <div class="hero-overlay">
+    <h1 class="hero-word" #heroWord>MİMARİ</h1>
+  </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section class="services">
+  <div class="services-title">
+    <h4>Neler Sağlyoruz</h4>
+    <h2>Profesyonel Olduğumuz Noktalar</h2>
+  </div>
+  <div class="cards">
+    <div
+      class="card"
+      *ngFor="let img of imagesForServices; let i = index"
+      #card
+      [class.visible]="visibleCards[i]">
+      <img [src]="'assets/' + img + '.png'" [alt]="img" />
+
+    </div>
+  </div>
+</section>
+
+
+<!-- SPONSOR SLIDER SECTION -->
+<section class="sponsors">
+  <div class="sponsors-track">
+    <div class="sponsor" *ngFor="let logo of sponsorLogos">
+      <img [src]="logo" alt="Sponsor Logo" />
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="features">
+  <div class="features-text">
+    <h4>YETENEKLERİMİZ</h4>
+    <h2>Bizi Ayıran Özellikler</h2>
+    <p>
+      AF-AR, yenilikçi yaklaşımı, kaliteden ödün vermeyen standartları ve müşteri memnuniyetine verdiği önemle öne çıkar. Prefabrik yapılar ve konut sektöründe uzmanlaşmış olan firmamız, özelleştirilebilir tasarımlarıyla sektörde fark yaratır.
+    </p>
+    <div class="skills">
+      <div class="skill" *ngFor="let skill of skills">
+        <span>{{ skill.name }}</span>
+        <div class="bar">
+          <div class="fill" [ngStyle]="{ width: skill.percent + '%' }"></div>
+        </div>
+        <span class="percent">{{ skill.percent }}%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="features-image">
+    <img src="assets/logo2.jpg" alt="Planlama" />
+  </div>
+</section>
+
+<div class="metrics">
+  <div
+    class="metric"
+    *ngFor="let metric of metrics; let i = index"
+    #metricRef
+    [ngClass]="{ 'visible': visibleMetrics[i] }"
+  >
+    <h3>{{ metric.value }}</h3>
+    <p>{{ metric.label }}</p>
+  </div>
+</div>
+

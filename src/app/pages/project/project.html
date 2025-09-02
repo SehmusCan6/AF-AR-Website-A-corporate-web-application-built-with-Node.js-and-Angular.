@@ -1,0 +1,112 @@
+<div class="project-header" id="project-header">
+  <h1>Projelerimiz</h1>
+  <p>Hayalinizdeki evi kuruyoruz</p>
+</div>
+
+<div class="project-wrapper">
+  <!-- Proje Kartları -->
+  <div
+    class="project-card"
+    *ngFor="let project of projects"
+  >
+    <div class="image-wrapper">
+      <img [src]="currentImage(project)" [alt]="project.title" />
+
+      <button class="nav prev" (click)="prevImage(project)">‹</button>
+      <button class="nav next" (click)="nextImage(project)">›</button>
+    </div>
+    <div class="content">
+      <div class="header">
+        <h2>{{ project.title }}</h2>
+        <span class="year">{{ project.year }}</span>
+      </div>
+      <p>{{ project.description }}</p>
+      <button class="details-btn" (click)="toggleSidebar(project)">
+        Detayları Gör
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Sidebar -->
+<div *ngIf="sidebarOpen" @sidebarSlide class="sidebar">
+  <button class="close-btn" (click)="closeSidebar()">×</button>
+  <h3 class="sidebar-title">{{ selectedProject?.title }}</h3>
+  <ul *ngIf="selectedProject">
+    <li><strong>Genişlik:</strong> {{ selectedProject.details.width }}</li>
+    <li><strong>Yapı Malzemesi:</strong> {{ selectedProject.details.material }}</li>
+    <li><strong>Teslimat Süresi:</strong> {{ selectedProject.details.delivery }}</li>
+    <li><strong>Yalıtım:</strong> {{ selectedProject.details.insulation }}</li>
+    <li><strong>Zemin:</strong> {{ selectedProject.details.floor }}</li>
+  </ul>
+  <button class="contact-btn" (click)="onContact()">İletişime Geç</button>
+</div>
+
+<!-- Backdrop -->
+<div *ngIf="sidebarOpen" @fadeBackdrop class="backdrop" (click)="closeSidebar()"></div>
+
+
+<section class="comparison-wrapper">
+  <h2 class="section-title">Hangi Evler Daha Çok Tercih Ediliyor?</h2>
+  <p class="section-subtitle">Son 6 aydaki müşteri tercihleri analizine göre</p>
+
+  <div class="comparison-grid">
+    <div
+      class="compare-card"
+      *ngFor="let ev of evler"
+    >
+      <div class="tooltip-wrapper">
+        <h3>{{ ev.title }}</h3>
+        <p><strong>{{ ev.rate }}%</strong> tercih edilme oranı</p>
+        <div class="tooltip">{{ ev.reason }}</div>
+      </div>
+
+      <div class="progress-bar">
+        <div class="fill" [style.width]="ev.rate + '%'" style="--fill: {{ev.rate}}%"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="map-section">
+  <h2 class="section-title">Proje Lokasyonlarımız</h2>
+  <p class="section-subtitle">Türkiye genelinde tamamladığımız projeleri görmek için haritadaki şehirlere tıklayın.</p>
+
+  <div class="turkey-map">
+    <img src="/assets/turkey-map.webp" alt="Türkiye Haritası" />
+
+    <div *ngFor="let city of cities"
+         class="city-dot"
+         [style.top]="city.top"
+         [style.left]="city.left"
+         (mouseenter)="onHoverCity(city)"
+         (mouseleave)="onLeaveCity()"
+         (click)="selectCity(city)">
+    </div>
+
+    <!-- Tooltip -->
+    <div *ngIf="hoveredCity" class="tooltip"
+         [style.top]="hoveredCity.top"
+         [style.left]="hoveredCity.left">
+      {{hoveredCity.name}} – {{hoveredCity.projectCount}} proje
+    </div>
+  </div>
+
+  <!-- Seçilen şehir detayları -->
+  <div *ngIf="selectedCity" class="city-detail">
+    <h3>{{selectedCity.name}}</h3>
+    <p><strong>Proje Sayısı:</strong> {{selectedCity.projectCount}}</p>
+    <p>{{selectedCity.description}}</p>
+
+    <!-- Görsel slider -->
+    <div class="city-gallery">
+      <img [src]="selectedCity.images[currentCityImageIndex]" alt="Şehir Projesi" />
+      <div class="slider-controls">
+        <button (click)="prevCityImage()">‹</button>
+        <button (click)="nextCityImage()">›</button>
+      </div>
+    </div>
+
+    <button (click)="onContact()">İletişime Geç</button>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+
+<section class="konteyner-section">
+  <h2 class="section-title">Konteyner Projeler</h2>
+
+  <div class="project-card" *ngFor="let project of projects">
+    <div class="image">
+      <img [src]="project.img" [alt]="project.title" />
+    </div>
+    <div class="details">
+      <h3>{{ project.title }}</h3>
+      <p class="description">{{ project.description }}</p>
+      <ul class="specs">
+        <li><strong>Alan:</strong> {{ project.area }}</li>
+        <li><strong>Teslim Süresi:</strong> {{ project.deliveryTime }}</li>
+        <li><strong>Malzeme Türü:</strong> {{ project.material }}</li>
+      </ul>
+    </div>
+  </div>
+</section>

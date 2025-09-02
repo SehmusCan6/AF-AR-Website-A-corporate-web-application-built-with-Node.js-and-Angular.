@@ -1,0 +1,54 @@
+<nav class="navbar">
+  <div class="logo-text">
+    <span>AF AR</span>
+    <span class="tagline">Yeni Nesil Yapılar</span>
+  </div>
+
+  <div class="hamburger" (click)="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <ul class="nav-links" [class.open]="menuOpen">
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Ana Sayfa</a></li>
+
+    <li class="dropdown">
+      <a routerLink="/projects" routerLinkActive="active">
+        Projeler <span class="arrow">&#9662;</span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a routerLink="/project1">Hafif Çelik</a></li>
+        <li><a routerLink="/project2">Prefabrik</a></li>
+        <li><a routerLink="/project3">İnşaat</a></li>
+        <li><a routerLink="/project4">Konteyner</a></li>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a routerLink="/services" routerLinkActive="active">
+        Hizmetler <span class="arrow">&#9662;</span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a [routerLink]="['/services']" fragment="steps-section">Proje Süreci</a></li>
+        <li><a [routerLink]="['/services']" fragment="faq-section">Sık Sorulan Sorular</a></li>
+        <li><a [routerLink]="['/services']" fragment="stats-section">Sayılarla Biz</a></li>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a routerLink="/about" routerLinkActive="active">
+        Hakkımızda <span class="arrow">&#9662;</span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a [routerLink]="['/about']" fragment="misyon-vizyon">Misyon/Vizyon</a></li>
+        <li><a [routerLink]="['/about']" fragment="timeline-section">AF-AR Yolculuğu</a></li>
+        <li><a [routerLink]="['/about']" fragment="why-afar-section">Neden AF-AR?</a></li>
+        <li><a [routerLink]="['/about']" fragment="team-section">Ekibimiz</a></li>
+      </ul>
+    </li>
+
+    <li><a routerLink="/contact" routerLinkActive="active">İletişim</a></li>
+    <li><a routerLink="/blog" routerLinkActive="active">Blog</a></li>
+  </ul>
+</nav>
