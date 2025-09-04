@@ -1,6 +1,6 @@
-# 🏗️ AF-AR Website – A Corporate Web Application Built with Node.js & Angular
+# 🏗️Website – A Corporate Web Application Built with Node.js & Angular
 
-**AF-AR Website** is a corporate web application showcasing **AF-AR’s services, projects, and solutions** with a modern and responsive design.  
+**Website** is a corporate web application showcasing **AF-AR’s services, projects, and solutions** with a modern and responsive design.  
 The platform was developed using **Angular** (frontend) and **Node.js** (backend) to ensure scalability, maintainability, and performance.  
 
 ---
